@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">GitHub Users</string>
+    <string name="default_error_message">An error has occurred</string>
+</resources>
