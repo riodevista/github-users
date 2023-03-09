@@ -1,6 +1,6 @@
 # GitHub Users
 
-This Android app displays a list of GitHub users retrieved from a REST API using Ktor as the HTTP client and Jetpack Compose for the UI. The app uses the MVVM architecture with Hilt for dependency injection.
+This Android app displays a list of GitHub users retrieved from a GitHub REST API using Ktor as the HTTP client and Jetpack Compose for the UI. The app uses the MVVM architecture with Hilt for dependency injection.
 
 <table>
   <tr>
