@@ -15,8 +15,15 @@ class UsersRepositoryImpl @Inject constructor(
     private val httpClient: HttpClient
 ) : UsersRepository {
 
-    override suspend fun getUsers() = withContext(Dispatchers.IO) {
-        httpClient.get("users").body<List<UserItemDto>>()
+    override suspend fun getUsers(since: Int?, perPage: Int?) = withContext(Dispatchers.IO) {
+        httpClient.get("users") {
+            if (since != null) {
+                parameter("since", since.toString())
+            }
+            if (perPage != null) {
+                parameter("per_page", perPage.toString())
+            }
+        }.body<List<UserItemDto>>()
     }
 
     override suspend fun getUser(login: String) = withContext(Dispatchers.IO) {
