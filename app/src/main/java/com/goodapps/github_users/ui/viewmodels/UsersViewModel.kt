@@ -26,24 +26,40 @@ class UsersViewModel @Inject constructor(
     val screenModel: StateFlow<UsersScreenModel>
         get() = _screenModel
 
+    private var isLoadingMore = false
+
     init {
         loadData()
     }
 
-    private fun loadData() {
-        _screenModel.update { it.copy(showProgress = true) }
+    private fun loadData(loadMore: Boolean = false) {
+        if (!loadMore) {
+            _screenModel.update { it.copy(showProgress = true) }
+        } else {
+            isLoadingMore = true
+        }
         viewModelScope.launch {
-            val fetchUsersResult = usersInteractor.fetchUsers()
+            val fetchUsersResult = usersInteractor.fetchUsers(loadMore)
             if (fetchUsersResult.isSuccess) {
-                fetchUsersResult.getOrDefault(emptyList()).let {
+                val newUsers = fetchUsersResult.getOrDefault(emptyList()).map(User::toUIModel)
+                if (loadMore) {
                     _screenModel.update { prevModel ->
                         prevModel.copy(
-                            users = it.map(User::toUIModel),
+                            users = prevModel.users + newUsers,
+                            showProgress = false,
+                            errorEvent = null
+                        )
+                    }
+                } else {
+                    _screenModel.update { prevModel ->
+                        prevModel.copy(
+                            users = newUsers,
                             showProgress = false,
                             errorEvent = null
                         )
                     }
                 }
+                isLoadingMore = false
             } else {
                 _screenModel.update {
                     it.copy(
@@ -56,6 +72,12 @@ class UsersViewModel @Inject constructor(
                     )
                 }
             }
+        }
+    }
+
+    fun loadMoreData(visibleItemCount: Int, lastVisibleItemPosition: Int, totalItemCount: Int) {
+        if (!isLoadingMore && lastVisibleItemPosition + visibleItemCount >= totalItemCount) {
+            loadData(loadMore = true)
         }
     }
 }

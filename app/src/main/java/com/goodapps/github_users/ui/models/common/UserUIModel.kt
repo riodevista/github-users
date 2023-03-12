@@ -3,7 +3,7 @@ package com.goodapps.github_users.ui.models.common
 import com.goodapps.github_users.domain.models.User
 
 data class UserUIModel(
-    val id: Long,
+    val id: Int,
     val avatarUrl: String?,
     val login: String
 )
