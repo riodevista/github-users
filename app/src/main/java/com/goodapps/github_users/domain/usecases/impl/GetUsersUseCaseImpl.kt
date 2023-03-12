@@ -12,9 +12,9 @@ class GetUsersUseCaseImpl @Inject constructor(
     private val usersRepository: UsersRepository
 ) : GetUsersUseCase {
 
-    override suspend fun execute(): Result<List<User>> {
+    override suspend fun execute(since: Int?, perPage: Int?): Result<List<User>> {
         return try {
-            val users = usersRepository.getUsers()
+            val users = usersRepository.getUsers(since, perPage)
             Result.success(users.map(UserItemDto::toDomain))
         } catch (e: Exception) {
             Result.failure(e)

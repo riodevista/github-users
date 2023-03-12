@@ -1,7 +1,7 @@
 package com.goodapps.github_users.domain.models
 
 data class User(
-    val id: Long,
+    val id: Int,
     val avatarUrl: String? = null,
     val login: String,
     val name: String? = null,
