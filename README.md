@@ -6,10 +6,13 @@ This Android app displays a list of GitHub users retrieved from a GitHub REST AP
   <tr>
     <td><img src="https://user-images.githubusercontent.com/9745990/224025823-5e38d101-4bc9-45e3-8adf-5218024a17a7.png" alt="main screen" width="200"/></td>
     <td><img src="https://user-images.githubusercontent.com/9745990/224026019-74b7fbc3-d90f-40e9-8b04-21d770c7d88e.png" alt="details screen" width="200"/></td>
+    </td>
+    <td><img src="https://user-images.githubusercontent.com/9745990/224564959-854684c5-a9be-4a67-8f89-00e0d69613e6.png" alt="pagination" width="200"/></td>
   </tr>
   <tr>
     <td>Main Screen</td>
     <td>Details Screen</td>
+    <td>Pagination</td>
   </tr>
 </table>
 
@@ -39,6 +42,7 @@ Instructions on how to use the app:
 
 ## Contributing
 
+
 Instructions on how to contribute to the project and guidelines for submitting pull requests:
 
 1. Fork the project.
@@ -46,6 +50,16 @@ Instructions on how to contribute to the project and guidelines for submitting p
 3. Commit your changes (`git commit -am 'Add some feature'`).
 4. Push to the branch (`git push origin feature/your-feature-name`).
 5. Create a new Pull Request.
+
+
+## Versions
+
+### Version 1.1
+- Added pagination to improve performance and user experience when loading a large number of users
+
+### Version 1.0
+- Initial release of GitHub Users, with basic functionality to display a list of users and navigate to their details screen
+
 
 ## License
 
